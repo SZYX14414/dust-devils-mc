@@ -42,6 +42,19 @@
 .v4-rank-name{flex:1;min-width:0;overflow-wrap:anywhere}.v4-rank-score{color:#d8b47c;font-weight:800}
 .v4-stock-alert{border-left:3px solid #e2a76a;padding:8px 12px;margin:8px 0;background:#a5773b19;border-radius:4px}
 @media(max-width:700px){.v4-heading{align-items:flex-start}.v4-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.v4-kpi{padding:13px}.v4-kpi-value{font-size:23px}}
+</style><style id="v5-ultimate-visual">
+/* V5 ULTIMATE — couche visuelle non destructive. Aucune logique métier modifiée. */
+:root{--gold:#dfb877;--bg:#0c0e10;--panel:#1c1d1e;--border:#69543b;--muted:#c1b5a4}
+body{background:#0c0e10;letter-spacing:.08px}
+.sidebar{background:linear-gradient(180deg,#191713 0%,#101112 100%);border-right:1px solid #6a5132;box-shadow:8px 0 32px #0005}
+.brand{color:#ebc48c;text-shadow:0 2px 20px #a8763550;letter-spacing:1.5px}
+.nav{transition:background .18s ease,transform .18s ease,box-shadow .18s ease;border:1px solid transparent}
+.nav:hover{transform:translateX(3px);background:#413222;border-color:#765735}
+.nav.active{background:linear-gradient(90deg,#74502a,#3d2d20);border-color:#a27a49;box-shadow:inset 3px 0 #e8bc77}
+button{transition:filter .18s ease,transform .18s ease}
+button:hover{filter:brightness(1.08)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #e8bc77;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style></head><body><div id="authGate" style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:#100d0b;color:#f4e7d5"><div style="max-width:420px;width:100%;background:#201915;border:1px solid #765337;border-radius:14px;padding:30px"><h1 style="font-family:Georgia;color:#d3a76c;text-align:center">DUST DEVIL’S MC</h1><p style="text-align:center">Connexion privée à la tablette</p><form id="loginForm"><label>Identifiant<input id="loginName" required autocomplete="username" placeholder="lucas.lubrun" style="display:block;width:100%;padding:12px;margin:8px 0 18px"></label><label>Mot de passe<input id="loginPassword" required type="password" autocomplete="current-password" style="display:block;width:100%;padding:12px;margin:8px 0 18px"></label><button class="primary" style="width:100%;padding:13px" type="submit">Se connecter</button></form><p id="loginError" role="alert" style="color:#ffc1ad"></p></div></div><div class="app" id="protectedApp" style="display:none"><aside class="sidebar"><div class="brand">DUST DEVIL'S</div><div class="sub">MOTORCYCLE CLUB · FA</div><div class="role-panel"><strong id="sessionName">Session</strong><br><small id="roleLabel"></small><br><button onclick="logoutClub()" class="secondary" style="margin-top:12px">Se déconnecter</button></div><div class="links" id="nav"></div><p class="note">Ride · Brotherhood · Freedom<br><br>Version partagée : données synchronisées entre les membres autorisés.</p></aside><main class="main"><div class="top"><span class="eyebrow">DUST DEVIL'S MC / TABLETTE</span><span class="pill">● CLUB MANAGEMENT</span></div><h1 id="heading">Tableau de bord</h1><div id="content"></div></main></div><dialog id="modal"><h2 id="modalTitle"></h2><form id="form"><div id="fields"></div><div class="actions"><button class="secondary" type="button" onclick="modal.close()">Annuler</button><button class="primary" type="submit">Enregistrer</button></div></form></dialog>
 <script>
 const sections=[['dashboard','◈','Tableau de bord'],['members','♟','Membres'],['activities','◆','Actions & salaires'],['treasury','＄','Trésorerie'],['stock','▣','Stock RP'],['ranks','★','Grades'],['recruitments','✦','Recrutements'],['absences','◷','Absences'],['reimbursements','↺','Remboursements'],['settings','⚙','Paramètres'],['profile','♙','Mon compte']];
