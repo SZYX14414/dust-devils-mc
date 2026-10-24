@@ -14,3 +14,4 @@ Ne PAS réexécuter SUPABASE_MIGRATION_V2.sql si déjà appliquée.
 Aucune migration V5 nécessaire pour ce lot.
 
 SUITE : voir PLAN_V5.md. Ne pas créer de tables ni appliquer de scripts SQL non validés.
+Déploiement de test V5
