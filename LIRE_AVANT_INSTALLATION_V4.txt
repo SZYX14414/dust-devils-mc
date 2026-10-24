@@ -1,0 +1,11 @@
+DUST DEVIL’S MC — V4 ÉTAPE 1 (design + tableau de bord)
+
+Cette livraison ajoute une identité visuelle renforcée, des indicateurs hebdomadaires, un classement indicatif des actions et des alertes de stock (seuil indicatif 10).
+Elle conserve les fichiers Netlify, les accès Supabase et les données. Aucune migration SQL requise.
+
+AVANT INSTALLATION : conserver une copie de la V3 et exporter une sauvegarde JSON depuis Paramètres.
+INSTALLATION : déposer les fichiers du ZIP à la racine du dépôt GitHub existant, sans supprimer les variables Netlify. Attendre le déploiement puis tester avec un compte admin et un compte membre.
+
+NON INCLUS DANS CETTE ÉTAPE : calendrier partagé, fiches membres enrichies, gestion avancée des seuils, restauration automatisée. Ces fonctionnalités nécessitent une migration de données et des vérifications de permissions.
+
+Le classement est indicatif : les actions du journal ne contiennent pas nécessairement des identifiants individuels fiables.
