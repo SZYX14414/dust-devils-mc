@@ -1,0 +1,16 @@
+DUST DEVIL’S MC — VERSION CORRIGÉE POUR IDENTIFIANT + MOT DE PASSE
+
+Cette version conserve l’e-mail Supabase existant du compte administrateur.
+Ne changez PAS l’e-mail du compte administrateur.
+
+Prérequis :
+1. Supabase public.member_profiles contient user_id, member_name, role et username.
+2. L’administrateur possède username = lucas.lubrun et role = admin dans member_profiles.
+3. Netlify > Environment variables : SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY (secret), SUPABASE_ANON_KEY (clé publishable ou anon).
+4. Publier tous les fichiers de cette archive dans le dépôt GitHub, en conservant les chemins.
+5. Vérifier le déploiement et tester avec lucas.lubrun + mot de passe Supabase existant.
+6. Le navigateur conserve la session jusqu’à déconnexion, révocation ou expiration non renouvelable.
+
+La fonction login.js retrouve l’adresse Supabase côté serveur, puis authentifie le mot de passe auprès de Supabase Auth. Le navigateur ne saisit que l’identifiant.
+
+SÉCURITÉ : Le service role reste uniquement dans les variables Netlify. Le point de connexion public doit être protégé contre les tentatives automatisées (limitation de débit/WAF Netlify). Cette version ne sécurise PAS les données locales ni les sources Google publiques. Les permissions affichées dans l’interface ne protègent pas les données statiques ; migrer les modules privés vers Supabase avec RLS avant d’y stocker des informations confidentielles.
