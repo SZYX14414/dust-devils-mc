@@ -15,8 +15,11 @@ function parseActions(csv){
  if(ix.some(i=>i<0))throw Error('Colonnes Google inattendues : '+header.join(', '));
  return rows.filter(r=>r[ix[1]]&&r[ix[2]]).map(r=>({date:date(r[ix[0]]),member:r[ix[1]].trim(),title:r[ix[2]].trim(),dirty:number(r[ix[3]]),clean:number(r[ix[4]])}));
 }
-exports.handler=async()=>{
+exports.handler=async(event)=>{
  try{
+  const {authenticate,allowed,respond}=require('./_auth');
+  const {profile}=await authenticate(event);
+  if(!allowed(profile,'activities','read'))return respond(403,{error:'Accès refusé'});
   const urls=[`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${GID}`,`https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${GID}`];
   let lastError;
   for(const url of urls){try{

@@ -1,0 +1,38 @@
+DUST DEVIL'S MC — TABLETTE PARTAGÉE V2
+
+1. SUPABASE : SQL Editor > New query > coller SUPABASE_MIGRATION_V2.sql > Run.
+   Ne pas réexécuter l'ancien SUPABASE_SETUP.sql : il ne correspond plus à cette version.
+   Ce script conserve le compte admin existant et son e-mail actuel.
+
+2. NETLIFY : Project configuration > Environment variables :
+   SUPABASE_URL = URL du projet Supabase
+   SUPABASE_ANON_KEY = clé anon/publishable compatible avec supabase-js
+   SUPABASE_SERVICE_ROLE_KEY = clé secrète service_role (uniquement dans Netlify)
+   Les 3 variables doivent être disponibles pour les Functions.
+   Ne jamais publier de clé service_role sur GitHub ou dans le HTML.
+
+3. GITHUB : décompresser l'archive, puis remplacer les fichiers du dépôt en
+   conservant netlify/functions/*.js. Commit sur main ; attendre Published.
+
+4. TESTS : se connecter avec lucas.lubrun et le mot de passe EXISTANT du compte Supabase.
+   Tester « Mon compte », les comptes et les permissions avec un compte non-admin.
+   Créer un compte de test, vérifier le changement obligatoire du mot de passe.
+
+5. DONNÉES ANCIENNES : les nouvelles rubriques partagées sont vides par défaut.
+   Les anciennes données locales du navigateur ne sont PAS écrasées.
+   Pour importer : administrateur > Paramètres > sauvegarde JSON d'abord,
+   puis « Importer les anciennes données de ce navigateur » (une seule fois).
+   Les rubriques Supabase non vides sont volontairement ignorées.
+
+6. LIMITES IMPORTANTES :
+   - La sécurité des rubriques partagées passe par les fonctions Netlify.
+   - Les documents Google Sheets/Forms restent soumis à LEURS PROPRES réglages
+     de partage et peuvent être publics en dehors de la tablette.
+   - La bannière et certains contenus statiques présents dans index.html restent
+     consultables dans le code source public. Ne pas y mettre de secrets.
+   - Les annonces sont visibles après connexion, leur publication est limitée
+     aux rôles admin/bureau.
+   - Les notifications sont internes à la tablette (pas de push navigateur).
+   - La session peut expirer ou être révoquée ; elle n'est pas éternelle.
+   - Les mises à jour sont récupérées au retour sur l'onglet ; pas de websocket.
+   - Tester sur un site de prévisualisation avant publication pour tous.
