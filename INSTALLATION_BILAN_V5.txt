@@ -1,0 +1,26 @@
+DUST DEVIL'S MC — V5 GRADES ADMIN + BILAN FINANCIER INDIVIDUEL
+
+INSTALLATION
+1. Sauvegarder le dépôt actuel et les données Supabase avant tout changement.
+2. Sur GitHub, choisir la branche v5-test (ne pas modifier main).
+3. Décompresser ce ZIP, envoyer les fichiers/dossiers en conservant l'arborescence.
+4. Commit sur v5-test ; attendre le déploiement Netlify de la branche.
+5. Tester avec un administrateur : Actions & salaires -> Bilan financier individuel.
+6. Vérifier le filtre membre, les périodes et l'export CSV.
+
+FONCTIONNEMENT
+- Conserve la gestion des grades RP et liaison des comptes du ZIP précédent.
+- Bilan propre/sale/CA brut/part calculée/nombre d'actions par membre.
+- Utilise le journal existant Google Sheets + tablette, avec sa déduplication actuelle.
+- Accessible uniquement aux administrateurs dans l'interface.
+- Aucune migration SQL supplémentaire.
+
+LIMITES IMPORTANTES
+- Ce bilan est une agrégation de déclarations, pas une comptabilité certifiée.
+- Le nom RP sert de clé de regroupement ; des homonymes ou variantes peuvent être séparés.
+- Une action avec plusieurs noms ne peut pas être répartie correctement sans parts individuelles : elle est classée non attribuée.
+- La part calculée n'est pas une preuve de versement ; le CA n'est pas la trésorerie.
+- Les quantités de marchandises ne peuvent pas être inférées du CA sans prix unitaire.
+- Le bilan global n'a pas de nouvelle API protégée ; les données du journal préexistant restent accessibles selon les droits actuels du site. Pour une confidentialité forte, créer une API de bilan dédiée et contrôler les accès côté serveur.
+- Aucun bot Discord ni synchronisation des caméras n'est inclus dans cette livraison.
+- Tester avant toute fusion sur main ; la branche de test peut utiliser la base de production si les variables Netlify ne sont pas isolées.

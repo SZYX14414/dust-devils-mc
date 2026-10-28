@@ -1,0 +1,23 @@
+DUST DEVIL'S MC — V5 / GRADES RP
+
+1. Sauvegarde la version actuelle (GitHub main) et exporte les données depuis Paramètres.
+2. Dans GitHub, sélectionne impérativement la branche v5-test.
+3. Envoie les fichiers du ZIP décompressé à la racine du dépôt, en conservant leurs dossiers.
+4. Vérifie que netlify/functions/member-grades.js existe et que Netlify déploie v5-test.
+5. Attention : ce déploiement de test peut utiliser la même base Supabase que la production. Ne modifie pas de grades réels avant d'avoir isolé la base de test.
+6. Après configuration d'une base de test séparée, ouvre Paramètres avec un compte admin, rubrique « Grades RP et liaison des comptes ».
+7. Choisis une fiche membre, un grade et éventuellement l'identifiant d'un compte EXISTANT (pas de mot de passe requis).
+8. Confirme. La fiche membre est mise à jour sur Supabase, sans toucher au compte Auth.
+
+SÉCURITÉ
+- Seul un admin peut utiliser l'API de changement de grade.
+- Les changements de grade passent par une fonction Netlify authentifiée.
+- Les utilisateurs non admins ne peuvent plus changer les champs grade, nom et user_id via l'API de données générique; la suppression et l'import de la liste membres sont également réservés aux admins.
+- Le journal club_audit enregistre l'ancien et le nouveau grade.
+- Les membres existants et les comptes Auth ne sont ni supprimés ni recréés.
+- Pas de migration SQL supplémentaire.
+
+LIMITES
+- Cette étape ne crée pas encore les fiches détaillées, la messagerie ou les bilans financiers.
+- Les mises à jour apparaissent aux autres sessions lors de leur prochaine actualisation/rechargement; pas de push temps réel dans cette étape.
+- Il faut vérifier les autorisations et le comportement sur la base de test avant de fusionner sur main.
