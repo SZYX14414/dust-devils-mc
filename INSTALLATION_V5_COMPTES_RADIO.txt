@@ -1,0 +1,23 @@
+DUST DEVIL'S MC — V5 Comptes + Radio + Grades + Bilan financier
+
+CONTENU
+- Paramètres > Administration des comptes existants : charger la liste, changer rôle et permissions.
+- Paramètres > Grades RP et liaison des comptes : réservé aux administrateurs.
+- Radio du club : salons Général, Bureau, Trésorerie ; actualisation 5 secondes.
+- Actions & salaires : bilan financier individuel de la version précédente.
+
+INSTALLATION (TEST UNIQUEMENT)
+1. Sauvegarder la base Supabase de production avant toute modification.
+2. Recommandé : créer un projet Supabase de test séparé et configurer des variables Netlify propres à la branche de test. Sinon, le code de test utilise les données de production.
+3. Exécuter SUPABASE_MIGRATION_V5_CHAT.sql dans la base visée (après la migration V2 déjà installée).
+4. Décompresser ce ZIP, puis envoyer les fichiers à la racine du dépôt GitHub, branche v5-test (PAS main), en conservant netlify/functions.
+5. Vérifier le déploiement Netlify, se connecter en administrateur, charger les comptes dans Paramètres, tester la Radio.
+6. Faire tester le salon Général avec deux comptes de test ; vérifier qu'un membre n'accède pas au salon Bureau.
+
+LIMITES ET PRÉCAUTIONS
+- Le changement de rôle/permission d'un membre connecté peut nécessiter une actualisation de sa page pour que l'interface reflète le nouveau rôle. Les requêtes serveur vérifient le rôle courant.
+- Les grades RP restent réservés aux administrateurs côté serveur.
+- La Radio utilise un polling de 5 secondes, pas une connexion WebSocket.
+- Les messages privés, notifications, calendrier, votes et caméras Discord ne sont PAS encore implémentés.
+- Le bilan financier existant dépend des données d'actions disponibles ; les versements en caisse ne doivent pas être confondus avec le CA.
+- Ne pas publier en production sans tests et sauvegarde.

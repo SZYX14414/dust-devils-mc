@@ -3,7 +3,7 @@ const validName=x=>typeof x==='string'&&/^[a-z0-9._-]{3,40}$/.test(x);
 const emailFor=x=>x+'@members.dustdevils.invalid';
 exports.handler=async event=>{if(event.httpMethod!=='POST')return respond(405,{error:'Méthode non autorisée'});if((event.body||'').length>15000)return respond(413,{error:'Trop volumineux'});
 try{const {sb,user,profile}=await authenticate(event);if(profile.role!=='admin')return respond(403,{error:'Réservé aux administrateurs'});const body=JSON.parse(event.body||'{}'),{action,username,password,role,member_name}=body;
-if(action==='list'){const {data,error}=await sb.from('member_profiles').select('user_id,username,member_name,role,permission_overrides,must_change_password').order('member_name');if(error)throw error;return respond(200,{accounts:data})}
+if(action==='list'){const {data,error}=await sb.from('member_profiles').select('user_id,member_name,role,permission_overrides,must_change_password').order('member_name');if(error)throw error;const {data:logins,error:le}=await sb.from('member_logins').select('user_id,username');if(le)throw le;const byId=new Map((logins||[]).map(x=>[x.user_id,x.username]));return respond(200,{accounts:(data||[]).map(x=>({...x,username:byId.get(x.user_id)||''}))})}
 if(!validName(username))return respond(400,{error:'Identifiant invalide'});
 if(action==='create'){
  if(!roles[role]||typeof member_name!=='string'||!member_name.trim()||member_name.length>100||typeof password!=='string'||password.length<12)return respond(400,{error:'Nom, rôle ou mot de passe invalide (12 caractères minimum)'});

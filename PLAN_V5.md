@@ -27,3 +27,9 @@
 - Format exact des enregistrements `club_data` et des actions Google Sheets.
 - Modèle des permissions et des documents privés.
 - Politique de conservation des journaux et des sauvegardes.
+
+## V5 — Lot comptes et radio
+- Annuaire des comptes existants : affichage, rôle et permissions administrateur.
+- Radio du club : salons Général, Bureau et Trésorerie, messages persistants et contrôle serveur.
+- Migration additive : SUPABASE_MIGRATION_V5_CHAT.sql.
+- À développer : notifications, messages privés, calendrier, votes, rapprochement financier des ventes et caméras Discord.
